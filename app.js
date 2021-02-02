@@ -1,16 +1,23 @@
 import express from 'express'
-//import fs from 'fs'
+import { fetchData, timeStamp, formatTime } from './src/videos.js';
 
 const app = express();
-const viewsPath = new URL('./views', import.meta.url).pathname;
-console.log(viewsPath)
+//const viewsPath = new URL('/views', import.meta.url).pathname;
+app.use(express.static('public'));
 
-app.set('views', viewsPath);
+app.set('/views','views');
 app.set('view engine', 'ejs');
 
-app.get('/', (req, res) => {
-  // `title` verður aðgengilegt sem breyta í template
-  res.render('index', { title: 'Forsíða' });
+app.locals.timeStamp = (str) => timeStamp(str);
+app.locals.formatTime = (str) => formatTime(str)
+
+app.get('/', async (req, res) => {
+  try {
+    const data = await fetchData();
+    res.render('videos', {data});
+  } catch(e) {
+    throw new Error(e);
+  }
 });
 
 function notFoundHandler(req, res, next) {
