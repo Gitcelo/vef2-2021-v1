@@ -20,6 +20,19 @@ app.get('/', async (req, res) => {
   }
 });
 
+app.get('/videos/:data?',async (req,res,next) => {
+  const d = req.params.data-1;
+  try {
+    const data = await fetchData();
+    if(data.videos[d]) {
+      res.render('video-player', { data, d });
+    }
+    else next();
+  } catch(e) {
+    throw new Error(e);
+  }
+});
+
 function notFoundHandler(req, res, next) {
   res.status(404).send('Síða fannst ekki');
 }

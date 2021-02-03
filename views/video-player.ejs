@@ -1,0 +1,14 @@
+<%- include('header') -%>
+
+<main>
+  <section class='video-view grid'>
+    <h1><%= data.videos[d].title %></h1>
+    <div class='video-container'>
+      <video id='myVideo' controls>
+        <source src='.<%= data.videos[d].video %>' type="video/mp4">
+      </video>
+    </div>
+  </section>
+</main>
+
+<%- include('footer') -%>
