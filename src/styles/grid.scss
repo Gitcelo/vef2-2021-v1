@@ -24,7 +24,13 @@
     width: $i / $columns * 100%;
   }
 
-  @media (max-width: 900px) {
+  @media (max-width: 1200px) {
+    .col-#{$i}-m {
+      width: $i / $columns * 100%;
+    }
+  }
+
+  @media (max-width: 600px) {
     .col-#{$i}-sm {
       width: $i / $columns * 100%;
     }

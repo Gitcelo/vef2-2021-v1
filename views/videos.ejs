@@ -7,7 +7,7 @@
       <% data.categories.forEach((category) => { %>
         <h2 class='col'><%= category.title %></h2>
         <% category.videos.forEach((videoid) => { %>
-          <div class='col col-4 col-12-sm video-card'>
+          <div class='col col-4 col-6-m col-12-sm video-card'>
             <a href='<%= 'videos/' + videoid %>'>
             <div class='video-thumbnail'>
               <img class='video-image' src='.<%= data.videos[videoid-1].poster %>'>
