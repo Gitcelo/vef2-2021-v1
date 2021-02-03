@@ -1,6 +1,6 @@
 import express from 'express';
 /* eslint-disable*/
-import { fetchData, timeStamp, formatTime } from './src/videos.js';
+import { fetchData, timeStamp, formatTime, sort } from './src/videos.js';
 /* eslint-enable */
 
 const app = express();

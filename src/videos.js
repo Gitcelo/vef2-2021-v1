@@ -42,3 +42,7 @@ export function formatTime(milliseconds) {
   if (year === 1) return 'Fyrir 1 ári síðan';
   return `Fyrir ${year} árum síðan`;
 }
+
+export function sort(arr) {
+  return arr.sort((a, b) => a - b);
+}
