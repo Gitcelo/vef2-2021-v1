@@ -1,43 +1,43 @@
-import express from 'express'
+import express from 'express';
+/* eslint-disable*/
 import { fetchData, timeStamp, formatTime } from './src/videos.js';
+/* eslint-enable */
 
 const app = express();
 
 app.use(express.static('public'));
-app.set('/views','views');
+app.set('/views', 'views');
 app.set('view engine', 'ejs');
 
 app.locals.timeStamp = (str) => timeStamp(str);
-app.locals.formatTime = (str) => formatTime(str)
+app.locals.formatTime = (str) => formatTime(str);
 
 app.get('/', async (req, res) => {
   try {
     const data = await fetchData();
     res.render('videos', { data });
-  } catch(e) {
+  } catch (e) {
     throw new Error(e);
   }
 });
 
-app.get('/videos/:data?', async (req,res,next) => {
+app.get('/videos/:data?', async (req, res, next) => {
   const d = req.params.data;
   try {
     const data = await fetchData();
-    if(data.videos[d]) {
+    if (data.videos[d]) {
       res.render('video-player', { data, d });
-    }
-    else next();
-  } catch(e) {
+    } else next();
+  } catch (e) {
     throw new Error(e);
   }
 });
 
-function notFoundHandler(req, res, next) {
+function notFoundHandler(req, res) {
   res.status(404).send('Síða fannst ekki');
 }
 
-function errorHandler(err, req, res, next) {
-  console.error(err);
+function errorHandler(err, req, res) {
   res.status(500).send('Villa kom upp');
 }
 
