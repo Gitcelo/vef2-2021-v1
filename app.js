@@ -2,9 +2,8 @@ import express from 'express'
 import { fetchData, timeStamp, formatTime } from './src/videos.js';
 
 const app = express();
-//const viewsPath = new URL('/views', import.meta.url).pathname;
-app.use(express.static('public'));
 
+app.use(express.static('public'));
 app.set('/views','views');
 app.set('view engine', 'ejs');
 
@@ -14,14 +13,14 @@ app.locals.formatTime = (str) => formatTime(str)
 app.get('/', async (req, res) => {
   try {
     const data = await fetchData();
-    res.render('videos', {data});
+    res.render('videos', { data });
   } catch(e) {
     throw new Error(e);
   }
 });
 
-app.get('/videos/:data?',async (req,res,next) => {
-  const d = req.params.data-1;
+app.get('/videos/:data?', async (req,res,next) => {
+  const d = req.params.data;
   try {
     const data = await fetchData();
     if(data.videos[d]) {

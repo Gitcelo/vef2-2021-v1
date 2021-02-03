@@ -2,13 +2,17 @@
 
 <main>
   <section class='video-view grid'>
-    <h1><%= data.videos[d].title %></h1>
+    <h1><%= data.videos[d-1].title %></h1>
     <div class='video-container'>
       <video id='myVideo' controls>
-        <source src='.<%= data.videos[d].video %>' type="video/mp4">
+        <source src='.<%= data.videos[d-1].video %>' type="video/mp4">
       </video>
     </div>
+    <div class='video-description'>
+      <p><%= data.videos[d-1].description %></p>
+    </div>
   </section>
+  <a href='<%= '/' %>'>Til baka</a>
 </main>
 
 <%- include('footer') -%>
